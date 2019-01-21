@@ -12,6 +12,7 @@ environment:
   GOPATH: c:\gopath
   CGO_ENABLED: '0'
   GOARCH: amd64
+  GOMAXPROCS: 2
   BINTRAY_KEY:
     secure: /0S6SdBwfiuWEdY4SKJcZpxEV+QpsfJfqx3QqYbnK8vwmB2KMGqerGzQRnIrkbGD
   GPG_PASSPHRASE:
