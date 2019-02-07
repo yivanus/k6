@@ -21,9 +21,9 @@ func TestDataDog(t *testing.T) {
 		testNamespace = "testing.things." // to be dynamic
 	)
 
-	addr, err := net.ResolveUDPAddr("udp4", ":0")
+	addr, err := net.ResolveUDPAddr("udp", ":0")
 	require.NoError(t, err)
-	listener, err := net.ListenUDP("udp4", addr) // we want to listen on a random port
+	listener, err := net.ListenUDP("udp", addr) // we want to listen on a random port
 	require.NoError(t, err)
 	var ch = make(chan string, 20)
 	var end = make(chan struct{})
@@ -54,7 +54,7 @@ func TestDataDog(t *testing.T) {
 	})
 
 	time.Sleep(time.Second)
-	con, err := net.DialUDP("udp4", &net.UDPAddr{}, listener.LocalAddr().(*net.UDPAddr))
+	con, err := net.DialUDP("udp", &net.UDPAddr{}, listener.LocalAddr().(*net.UDPAddr))
 	require.NoError(t, err)
 	spew.Dump(con)
 	_, err = con.Write([]byte("pesho"))
