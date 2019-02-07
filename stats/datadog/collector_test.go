@@ -55,6 +55,13 @@ func TestDataDog(t *testing.T) {
 	})
 
 	spew.Dump(baseConfig)
+
+	con, err := net.DialUDP("udp", &net.UDPAddr{}, addr)
+	require.NoError(t, err)
+	_, err = con.Write([]byte("pesho"))
+	require.NoError(t, err)
+	spew.Dump(<-ch)
+
 	collector, err := New(baseConfig)
 	require.NoError(t, err)
 	require.NoError(t, collector.Init())
