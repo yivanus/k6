@@ -21,7 +21,7 @@ func TestDataDog(t *testing.T) {
 		testNamespace = "testing.things." // to be dynamic
 	)
 
-	addr, err := net.ResolveUDPAddr("udp", ":0")
+	addr, err := net.ResolveUDPAddr("udp", "localhost:0")
 	require.NoError(t, err)
 	listener, err := net.ListenUDP("udp", addr) // we want to listen on a random port
 	require.NoError(t, err)
