@@ -54,6 +54,7 @@ func TestDataDog(t *testing.T) {
 
 	collector, err := New(baseConfig)
 	require.NoError(t, err)
+	time.Sleep(time.Second)
 	require.NoError(t, collector.Init())
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
