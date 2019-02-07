@@ -6,6 +6,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/davecgh/go-spew/spew"
 	"github.com/loadimpact/k6/lib"
 	"github.com/loadimpact/k6/lib/types"
 	"github.com/loadimpact/k6/stats"
@@ -24,6 +25,7 @@ func TestDataDog(t *testing.T) {
 	require.NoError(t, err)
 	listener, err := net.ListenUDP("udp", addr) // we want to listen on a random port
 	require.NoError(t, err)
+	spew.Dump(listener)
 	var ch = make(chan string, 20)
 	var end = make(chan struct{})
 	defer close(end)
@@ -52,9 +54,9 @@ func TestDataDog(t *testing.T) {
 		},
 	})
 
+	spew.Dump(baseConfig)
 	collector, err := New(baseConfig)
 	require.NoError(t, err)
-	time.Sleep(time.Second)
 	require.NoError(t, collector.Init())
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
