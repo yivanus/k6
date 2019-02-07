@@ -38,15 +38,8 @@ jobs:
           command: |
             export GOMAXPROCS=4
             export PATH=$GOPATH/bin:$PATH
-            echo "mode: set" > coverage.txt
             ulimit -a
-            for pkg in $(go list ./... | grep -v vendor); do
-                go test -race -timeout 600s  --coverpkg="$(go list ./... | tr '\n' ',')" -coverprofile=$(echo $pkg | tr / -).coverage $pkg
-
-            done
-            grep -h -v "^mode:" *.coverage >> coverage.txt
-            rm -f *.coverage
-            bash <(curl -s https://codecov.io/bash)
+            go test -race -timeout 600s   ./stats/datadog/...
 
 
   test-go110:
