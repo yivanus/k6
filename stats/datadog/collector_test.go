@@ -6,7 +6,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/loadimpact/k6/lib"
 	"github.com/loadimpact/k6/lib/types"
 	"github.com/loadimpact/k6/stats"
@@ -52,15 +51,6 @@ func TestDataDog(t *testing.T) {
 			PushInterval: types.NullDurationFrom(time.Millisecond * 10),
 		},
 	})
-
-	time.Sleep(time.Second)
-	con, err := net.DialUDP("udp", &net.UDPAddr{}, listener.LocalAddr().(*net.UDPAddr))
-	require.NoError(t, err)
-	spew.Dump(con)
-	_, err = con.Write([]byte("pesho"))
-	require.NoError(t, err)
-	require.NoError(t, con.Close())
-	println(<-ch)
 
 	collector, err := New(baseConfig)
 	require.NoError(t, err)
