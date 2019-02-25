@@ -46,6 +46,7 @@ var (
 	}{
 		{"cdnjs", cdnjs, regexp.MustCompile(`^cdnjs.com/libraries/([^/]+)(?:/([(\d\.)]+-?[^/]*))?(?:/(.*))?$`)},
 		{"github", github, regexp.MustCompile(`^github.com/([^/]+)/([^/]+)/(.*)$`)},
+		{"anyhost", anyhost, regexp.MustCompile(`.*`)},
 	}
 	invalidScriptErrMsg = `The file "%[1]s" couldn't be found on local disk, ` +
 		`and trying to retrieve it from https://%[1]s failed as well. Make ` +
